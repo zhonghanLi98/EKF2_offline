@@ -45,9 +45,9 @@ set(CMAKE_CXX_FLAGS "-DPOSIX_SHARED")
 #	message( FATAL_ERROR "Eigen3 not found.")
 #endif()
 
-if( NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../matrix/.git" )
-message( SEND_ERROR "The git submodules are not available. Please run
-git submodule update --init --recursive"
+# 检查matrix目录是否存在
+if( NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../matrix" )
+message( FATAL_ERROR "The matrix library is not available. Please ensure the matrix directory exists."
 )
 endif()
 
@@ -76,13 +76,13 @@ add_definitions(-std=c++11  )
 # Eigen throws various warnings
 #add_definitions(-Wno-deprecated-declarations -Wno-enum-compare -Wno-unused-local-typedefs)
 
-add_library(ecl SHARED ${SRCS})
+add_library(ecl STATIC ${SRCS})
 
 #add_library(myekf2 SHARED Myekf2.cpp)
 #target_link_libraries(myekf2 ecl  )
 
-add_executable(myekf2 Myekf2.cpp)
-target_link_libraries(myekf2 ecl  )
+add_executable(ekf_offline Myekf2.cpp)
+target_link_libraries(ekf_offline ecl  )
  
 #add_executable(main main.cpp)
 #target_link_libraries(main ecl  myekf2)

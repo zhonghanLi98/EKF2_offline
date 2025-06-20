@@ -400,10 +400,8 @@ void Ekf::controlGpsFusion()
 		// Only use GPS data for position and velocity aiding if enabled
 		if (_control_status.flags.gps) {
 			_fuse_pos = true;
-			  //_fuse_vert_vel = true;
-			  //_fuse_hor_vel = true;
-			_fuse_vert_vel = false;
-			_fuse_hor_vel = false;
+			_fuse_vert_vel = true;
+			_fuse_hor_vel = true;
 
 			// correct velocity for offset relative to IMU
 			Vector3f ang_rate = _imu_sample_delayed.delta_ang * (1.0f/_imu_sample_delayed.delta_ang_dt);

@@ -1,17 +1,21 @@
+#include <string>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+// POSIX头文件只在非Windows系统中包含
+#ifndef _WIN32
 #include <unistd.h>
 #include <fcntl.h>
+#include <poll.h>
+#endif
 #include <errno.h>
 #include <math.h>
-#include <poll.h>
 #include <time.h>
 #include <float.h>
 
 #include <ekf.h>
 
-class Ekf2 
+class Ekf2
 {
 public:
 	/**
@@ -31,7 +35,9 @@ public:
 	 */
 	//int	start();
 
-	void task_main();
+	void task_main(const std::string& data_dir);
+
+	static void task_main_trampoline(int argc, char *argv[]);
 
 	void print_status();
 

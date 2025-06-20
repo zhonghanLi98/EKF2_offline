@@ -192,7 +192,6 @@ void EstimatorInterface::setGpsData(uint64_t time_usec, struct gps_message *gps)
 		memcpy(&gps_sample_new.vel._data[0], gps->vel_ned, sizeof(gps_sample_new.vel._data));
 
 		_gps_speed_valid = gps->vel_ned_valid;
-		_gps_speed_valid = false;
 		gps_sample_new.sacc = gps->sacc;
 		gps_sample_new.hacc = gps->eph;
 		gps_sample_new.vacc = gps->epv;
@@ -378,7 +377,7 @@ bool EstimatorInterface::initialise_interface(uint64_t timestamp)
 
 	// limit to be no longer than the IMU buffer (we can't process data faster than the EKF prediction rate)
 	_obs_buffer_length = math::min(_obs_buffer_length,_imu_buffer_length);
-	//_obs_buffer_length = 2;
+	//_obs_buffer_length = 5;
 	if (!(_imu_buffer.allocate(_imu_buffer_length) &&
 	      _gps_buffer.allocate(_obs_buffer_length) &&
 	      _mag_buffer.allocate(_obs_buffer_length) &&

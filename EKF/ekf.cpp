@@ -181,7 +181,7 @@ bool Ekf::init(uint64_t timestamp)
 
 	_imu_updated = false;
 	_NED_origin_initialised = false;
-	_gps_speed_valid = false;
+	// GPS速度有效性由setGpsData函数设置，这里不强制设为false
 
 	_filter_initialised = false;
 	_terrain_initialised = false;

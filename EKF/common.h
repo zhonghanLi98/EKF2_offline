@@ -285,7 +285,7 @@ struct parameters {
 		// measurement time delays
 		mag_delay_ms = 0.0f;
 		baro_delay_ms = 0.0f;
-		gps_delay_ms = 0.0f;
+		gps_delay_ms = 40.0f;
 		airspeed_delay_ms = 200.0f;
 		flow_delay_ms = 5.0f;
 		range_delay_ms = 5.0f;
@@ -293,10 +293,10 @@ struct parameters {
 
 		// input noise
 		//gyro_noise = 0.025f;//1.5e-2f;
-		gyro_noise = 0.025f;//1.5e-2f;
+		gyro_noise = 0.015f;//1.5e-2f;
 		//accel_noise = 3.5e-1f;
 		//accel_noise = 0.7f;
-		accel_noise = 0.7f;
+		accel_noise = 0.35f;
 
 		// process noise
 		gyro_bias_p_noise = 1.0e-2f;
@@ -316,7 +316,7 @@ struct parameters {
 
 		// position and velocity fusion
 		gps_vel_noise = 5.0e-1f;
-		gps_pos_noise = 1.5f;
+		gps_pos_noise = 0.5f;
 		pos_noaid_noise = 10.0f;
 		baro_noise = 2.0f;
 		baro_innov_gate = 5.0f;

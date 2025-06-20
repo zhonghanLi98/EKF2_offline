@@ -72,7 +72,7 @@ void Ekf::fuseVelPosHeight()
 	if (_fuse_vert_vel) {
 		fuse_map[2] = true;
 		// vertical velocity innovation
-		//_vel_pos_innov[2] = _state.vel(2) - _gps_sample_delayed.vel(2);
+		_vel_pos_innov[2] = _state.vel(2) - _gps_sample_delayed.vel(2);
 		// observation variance - use receiver reported accuracy with parameter setting the minimum value
 		R[2] = fmaxf(_params.gps_vel_noise, 0.01f);
 		// use scaled horizontal speed accuracy assuming typical ratio of VDOP/HDOP
